@@ -8,17 +8,42 @@
       rel="stylesheet"
       type="text/css"
     />
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <title>PHero-Tube</title>
   </head>
-  <body class="max-w-screen-xl mx-auto divide-y-2 divide-stone-200">
-    <header class="flex justify-between my-6">
-      <img src="./img/Logo.png" alt="" />
-      <button>Sort by view</button>
-      <button id="blog-btn" onclick="blogPage()">Blog</button>
+  <body class="max-w-screen-xl mx-auto divide-y-2 divide-stone-200 px-4">
+    <header class="flex justify-between items-center my-6">
+      <img class="w-1/3 sm:w-1/6 md:w-[14%]" src="./img/Logo.png" alt="" />
+      <button
+        id="sort-btn"
+        class="bg-stone-200 px-3 py-1 md:px-4 md:py-1.5 rounded-sm text-sm font-semibold text-stone-600 md:text-base sm:mr-16 md:mr-24 lg:mr-32"
+      >
+        Sort by view
+      </button>
+      <button
+        class="bg-[#FF1F3D] text-white font-semibold rounded-sm px-3 py-1 md:px-4 md:py-2"
+        onclick="blogPage()"
+      >
+        Blog
+      </button>
     </header>
-    <main>pasdfd</main>
+    <main class="py-6 w-full mx-auto">
+      <div
+        id="categories-container"
+        class="flex flex-wrap justify-center items-center gap-3"
+      ></div>
+
+      <!-- card -->
+      <div
+        id="card-container"
+        class="grid lg:grid-cols-4 gap-4 mt-6 md:grid-cols-3 sm:grid-cols-2 justify-center"
+      ></div>
+
+      <!-- no data found -->
+      <div id="no-data-found"></div>
+    </main>
     <script src="index.js"></script>
   </body>
 </html>
