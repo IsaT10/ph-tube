@@ -18,7 +18,6 @@ const loadCategories = async () => {
 
 const displayCategories = (categories) => {
   categories.forEach((category) => {
-    console.log(category.category);
     const div = document.createElement("div");
 
     div.innerHTML = `        
@@ -36,7 +35,6 @@ const displayCategories = (categories) => {
 };
 
 const handlecontent = async (categoryID) => {
-  console.log(categoryID);
   const res = await fetch(
     `https://openapi.programming-hero.com/api/videos/category/${categoryID}`
   );
@@ -44,8 +42,8 @@ const handlecontent = async (categoryID) => {
 
   sortBtn.addEventListener("click", function () {
     data.data.sort(function (a, b) {
-      const num1 = Number(a.others.views.replace(/K/g, ""));
-      const num2 = Number(b.others.views.replace(/K/g, ""));
+      const num1 = parseFloat(a.others.views);
+      const num2 = parseFloat(b.others.views);
 
       if (num1 > num2) {
         return -1;
@@ -83,7 +81,6 @@ const displaycontent = (data) => {
 
   data.forEach((content) => {
     const duration = content.others.posted_date;
-
     const hours = Math.floor(duration / 3600);
     const remainingSec = duration % 3600;
     const minutes = Math.floor(remainingSec / 60);
@@ -95,11 +92,16 @@ const displaycontent = (data) => {
             <img
               class="w-80 h-52 object-cover rounded-md"
               src="${content.thumbnail}"
-              alt="Shoes"
+              alt=""
             />
-            <p class="bg-stone-700 text-xs px-1.5 py-0.5 rounded-md  text-white absolute right-3 bottom-5">
-            ${duration ? ` ${hours}hrs ${minutes}min ago` : ""} 
-           </p>
+            
+            <div>
+            ${
+              duration
+                ? `<p class="bg-stone-800 text-xs px-2 py-0.5  rounded-md  text-white absolute right-3 sm:right-10 md:right-3 bottom-5">  ${hours}hrs ${minutes}min ago</p>`
+                : ""
+            } 
+           </div>
           </figure>
           <div class="mt-5 flex gap-3 items-start ">
             <img
@@ -142,5 +144,4 @@ const displaycontent = (data) => {
 };
 
 loadCategories();
-
 handlecontent("1000");
